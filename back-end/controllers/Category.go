@@ -7,10 +7,10 @@ import (
 )
 
 func GetAllCategory(c *gin.Context) {
-	var category []models.Category
-	config.DB.Find(&category)
+	var categories []models.Category
+	config.DB.Find(&categories)
 
 	c.JSON(200, gin.H{
-		"category": category,
+		"categories": categories,
 	})
 }

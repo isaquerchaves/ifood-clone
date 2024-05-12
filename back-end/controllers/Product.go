@@ -8,7 +8,9 @@ import (
 
 func GetAllProduct(c *gin.Context) {
 	var products []models.Product
-	config.DB.Find(&products)
+
+	// Realiza o join com a tabela de restaurantes e traz as informações do restaurante
+	config.DB.Preload("Restaurant").Find(&products)
 
 	c.JSON(200, gin.H{
 		"products": products,

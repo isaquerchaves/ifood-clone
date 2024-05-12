@@ -18,6 +18,9 @@ export interface Product {
   DiscountPercentage: number;
   RestaurantId: string;
   CategoryId: string;
+  Restaurant: {
+    Name: string;
+  };
 }
 
 export async function fetchCategories(): Promise<Category[]> {

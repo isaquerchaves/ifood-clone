@@ -27,6 +27,7 @@ func main() {
 
 	app.GET("categories", controllers.GetAllCategory)
 	app.GET("products", controllers.GetAllProduct)
+	app.GET("restaurants", controllers.GetAllRestaurant)
 
 	app.Run("localhost:3002")
 

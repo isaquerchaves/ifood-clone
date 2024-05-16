@@ -7,8 +7,8 @@ type Restaurant struct {
 	ID                  string    `gorm:"primaryKey"`
 	Name                string    `gorm:"column:name"`
 	ImageUrl            string    `gorm:"column:imageUrl"`
-	DeliveryFee         string    `gorm:"column:deliveryFee"`
-	DeliveryTimeMinutes string    `gorm:"column:deliveryTimeMinutes"`
+	DeliveryFee         float64   `gorm:"column:deliveryFee"`
+	DeliveryTimeMinutes int32     `gorm:"column:deliveryTimeMinutes"`
 	Deleted_at          string    `gorm:"column:deleted_at"`
 	Products            []Product // Relacionamento um-para-muitos, um restaurante pode ter muitos produtos
 }

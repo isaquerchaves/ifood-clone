@@ -23,6 +23,14 @@ export interface Product {
   };
 }
 
+export interface Restaurant {
+  ID: string;
+  Name: string;
+  ImageUrl: string;
+  DeliveryFee: 
+  DeliveryTimeMinutes: 
+}
+
 export async function fetchCategories(): Promise<Category[]> {
   try {
     const response = await axios.get(`${API_BASE_URL}/categories`);

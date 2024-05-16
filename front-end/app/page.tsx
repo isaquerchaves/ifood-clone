@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Header from "./_components/header";
 import Search from "./_components/search";
@@ -5,8 +7,14 @@ import CategoryList from "./_components/ui/category-list";
 import ProductList from "./_components/product-list";
 import { Button } from "./_components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
+import { useFetchProducts } from "./_hooks/useFetch";
 
 export default function Home() {
+  const products = useFetchProducts();
+
+  // Filtrar os produtos com DiscountPercentage diferente de zero
+  const productsWithDiscount = products.filter(product => product.DiscountPercentage !== 0);
+  
   return (
     <>
       <Header />
@@ -37,7 +45,7 @@ export default function Home() {
             <ChevronRightIcon size={16} />
           </Button>
         </div>
-        <ProductList />
+        <ProductList products={productsWithDiscount} />
       </div>
       
     </>

@@ -27,8 +27,8 @@ export interface Restaurant {
   ID: string;
   Name: string;
   ImageUrl: string;
-  DeliveryFee: 
-  DeliveryTimeMinutes: 
+  DeliveryFee: number;
+  DeliveryTimeMinutes: number 
 }
 
 export async function fetchCategories(): Promise<Category[]> {
@@ -48,5 +48,15 @@ export async function fetchProducts(): Promise<Product[]> {
   } catch (error) {
     console.error("Error fetching categories:", error);
     return [];
+  }
+}
+
+export async function fetchRestaurants(): Promise<Restaurant[]> {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/restaurants`);
+    return response.data.restaurants;
+  } catch (error) {
+    console.error("Error fetching restaurants:", error);
+    return []
   }
 }

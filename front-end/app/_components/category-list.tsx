@@ -1,10 +1,10 @@
 'use client'
 
-import { useFetchCategories } from "@/app/_hooks/useFetch";
-import CategoryItem from "../category-item";
+import { useFetchCategories } from "@/app/_hooks/useFetch"
+import CategoryItem from "./category-item";
 
 const CategoryList = () => {
-  const categories = useFetchCategories();
+  const { categories }  = useFetchCategories();
 
   return (
     <div className="grid grid-cols-2 gap-3">

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { promises } from "dns";
 
 const API_BASE_URL = 'http://localhost:3002';
 
@@ -16,10 +15,13 @@ export interface Product {
   ImageUrl: string;
   Price: number;
   DiscountPercentage: number;
-  RestaurantId: string;
-  CategoryId: string;
+  RestaurantID: string;
+  CategoryID: string;
   Restaurant: {
     Name: string;
+    ImageUrl: string;
+    DeliveryFee: number;
+    DeliveryTimeMinutes: number;
   };
 }
 

@@ -1,4 +1,5 @@
 "use client";
+import DeliveryInfo from "@/app/_components/delivery-info";
 import DiscountBadge from "@/app/_components/discount-badge";
 import ProductList from "@/app/_components/product-list";
 import { Button } from "@/app/_components/ui/button";
@@ -94,34 +95,7 @@ const ProductDetails = ({
 
       {/*DADOS DA ENTREGA*/}
       <div className="px-5">
-        <Card className="flex justify-around py-3 mt-6">
-          {/*CUSTO*/}
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <span className="text-xs">Entrega</span>
-              <BikeIcon size={14} />
-            </div>
-
-            {product.Restaurant.DeliveryFee > 0 ? (
-              <p className="text-xs font-semibold">
-                {formatCurrency(product.Restaurant.DeliveryFee)}
-              </p>
-            ) : (
-              <p className="text-xs font-semibold">Gratis</p>
-            )}
-          </div>
-
-          {/*TEMPO*/}
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <span className="text-xs">Entrega</span>
-              <TimerIcon size={14} />
-            </div>
-            <p className="text-xs font-semibold">
-              {product.Restaurant.DeliveryTimeMinutes} min
-            </p>
-          </div>
-        </Card>
+        <DeliveryInfo restaurant={product.Restaurant} />
       </div>
 
       {/*DESCRIÇÃO*/}

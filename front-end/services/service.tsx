@@ -1,11 +1,21 @@
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:3002';
+const API_BASE_URL = "http://localhost:3002";
 
 export interface Category {
   ID: string;
   Name: string;
   ImageUrl: string;
+  Product: {
+    ID: string;
+    Name: string;
+    Description: string;
+    ImageUrl: string;
+    Price: number;
+    DiscountPercentage: number;
+    RestaurantID: string;
+    CategoryID: string;
+  };
 }
 
 export interface Product {
@@ -23,6 +33,9 @@ export interface Product {
     DeliveryFee: number;
     DeliveryTimeMinutes: number;
   };
+  Category: {
+    Name: string;
+  };
 }
 
 export interface Restaurant {
@@ -30,7 +43,16 @@ export interface Restaurant {
   Name: string;
   ImageUrl: string;
   DeliveryFee: number;
-  DeliveryTimeMinutes: number 
+  DeliveryTimeMinutes: number;
+}
+
+export interface CategoriesRestaurant {
+  CategoryID: string;
+  RestaurantID: string;
+  Category: {
+    Name: string;
+    ImageUrl: string;
+  };
 }
 
 export async function fetchCategories(): Promise<Category[]> {
@@ -59,6 +81,18 @@ export async function fetchRestaurants(): Promise<Restaurant[]> {
     return response.data.restaurants;
   } catch (error) {
     console.error("Error fetching restaurants:", error);
-    return []
+    return [];
+  }
+}
+
+export async function fetchCategoryRestaurant(): Promise<
+  CategoriesRestaurant[]
+> {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/categoriesRestaurant`);
+    return response.data.categories;
+  } catch (error) {
+    console.error("Error fetching restaurants:", error);
+    return [];
   }
 }

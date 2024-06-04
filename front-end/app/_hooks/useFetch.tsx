@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchCategories, Category, Product, fetchProducts, fetchRestaurants, Restaurant } from "@/services/service";
+import { fetchCategories, Category, Product, fetchProducts, fetchRestaurants, Restaurant, CategoriesRestaurant, fetchCategoryRestaurant } from "@/services/service";
+import error from "next/error";
 
 interface UseFetchProductsResult {
   products: Product[];
@@ -86,4 +87,27 @@ export function useFetchRestaurants(): UseFetchRestaurantsResult {
   }, []);
 
   return { restaurants, loading, error };
+}
+
+interface UseFetchCategoriesRestaurant {
+  categories: CategoriesRestaurant[];
+}
+
+export function useFetchCategoriesRestaurant(): UseFetchCategoriesRestaurant {
+  const [categories, setCategories] = useState<CategoriesRestaurant[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const categoriesData = await fetchCategoryRestaurant();
+        setCategories(categoriesData);
+      } catch (error){
+        return error;
+      }
+    }
+
+    fetchData();
+  }, [])
+
+  return { categories }
 }

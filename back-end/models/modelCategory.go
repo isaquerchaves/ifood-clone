@@ -8,6 +8,7 @@ type Category struct {
 	Name       string `gorm:"column:name"`
 	ImageUrl   string `gorm:"column:imageUrl"`
 	Deleted_at string `gorm:"column:deleted_at"`
+	Product    []Product
 }
 
 func (Category) TableName() string {

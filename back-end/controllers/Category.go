@@ -8,7 +8,8 @@ import (
 
 func GetAllCategory(c *gin.Context) {
 	var categories []models.Category
-	config.DB.Find(&categories)
+
+	config.DB.Preload("Product").Find(&categories)
 
 	c.JSON(200, gin.H{
 		"categories": categories,

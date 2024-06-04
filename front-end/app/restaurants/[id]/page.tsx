@@ -1,10 +1,15 @@
 "use client";
-import { useFetchRestaurants } from "@/app/_hooks/useFetch";
+import {
+  useFetchCategoriesRestaurant,
+  useFetchProducts,
+  useFetchRestaurants,
+} from "@/app/_hooks/useFetch";
 import { notFound } from "next/navigation";
 import RestaurantImage from "./_components/restaurant-image";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
 import DeliveryInfo from "@/app/_components/delivery-info";
+import ProductList from "@/app/_components/product-list";
 
 interface RestaurantPageProps {
   params: {
@@ -14,6 +19,8 @@ interface RestaurantPageProps {
 
 const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
   const { restaurants, loading, error } = useFetchRestaurants();
+  const { categories } = useFetchCategoriesRestaurant();
+  const { products } = useFetchProducts();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -24,6 +31,8 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
   }
 
   const restaurant = restaurants.find((restaurant) => restaurant.ID === id);
+  const categorie = categories.filter((categories) => categories.RestaurantID === id);
+  const product = products.filter((product) => product.RestaurantID === id);
 
   if (!restaurant) {
     return notFound();
@@ -57,10 +66,30 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
         <DeliveryInfo restaurant={restaurant} />
       </div>
 
-      <div className="flex overflow-x-scroll">
-        
+      <div className="mt-3 flex gap-4 overflow-x-scroll px-5 [&::-webkit-scrollbar]:hidden">
+        {categorie.map((categorie) => (
+          <div
+            key={categorie.CategoryID}
+            className="min-w-[167px] rounded-lg bg-[#F4F4F4] text-center"
+          >
+            <span className="text-xs text-muted-foreground">
+              {categorie.Category.Name}
+            </span>
+          </div>
+        ))}
       </div>
 
+      <div className="mt-6 space-y-4">
+        {/* TODO: mostrar produtos mais pedidos quando implementarmos realização de pedido */}
+        <h2 className="px-5  font-semibold">Mais Pedidos</h2>
+        <ProductList products={product} />
+      </div>
+
+      {product.map((product) => (
+        <div className="mt-6 space-y-4" key={product.CategoryID}>
+          {product?.Category?.Name}
+        </div>
+      ))}
     </div>
   );
 };

@@ -12,7 +12,7 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <Link className="w-[150px] min-w-[150px]" href={`/products/${product.ID}`}>
+    <Link className=" min-w-[150px] w-full" href={`/products/${product.ID}`}>
       <div className="space-y-2 w-full">
         <div className="h-[150px] w-full relative">
           <Image

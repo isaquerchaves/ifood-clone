@@ -10,7 +10,7 @@ interface RestaurantItemProps {
 
 const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
   return (
-    <div className="min-w-[266px] max-w-[266px] space-y-3">
+    <div className="min-w-[266px] w-full">
       <div className="w-full h-[136px] relative">
         <Image
           src={restaurant.ImageUrl}
@@ -21,12 +21,13 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
 
         <div className="absolute top-2 left-2 bg-primary py-[2px] px-2 rounded-full bg-white flex items-center gap-[2px]">
           <StarIcon size={12} className=" fill-yellow-400 text-yellow-400" />
-          <span className="font-semibold text-xs">
-            5.0
-          </span>
+          <span className="font-semibold text-xs">5.0</span>
         </div>
 
-        <Button size="icon" className="absolute top-2 right-2 rounded-full bg-gray-700 h-7 w-7">
+        <Button
+          size="icon"
+          className="absolute top-2 right-2 rounded-full bg-gray-700 h-7 w-7"
+        >
           <HeartIcon className="fill-white" size={16} />
         </Button>
       </div>

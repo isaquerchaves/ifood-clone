@@ -9,6 +9,7 @@ import { Button } from "./_components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
 import { useFetchProducts } from "./_hooks/useFetch";
 import RestaurantList from "./_components/restaurant-list";
+import Link from "next/link";
 
 export default function Home() {
   const { products, loading, error } = useFetchProducts();
@@ -31,6 +32,7 @@ export default function Home() {
       <div className="px-5 pt-6">
         <Search />
       </div>
+      
       <div className="px-5 pt-6">
         <CategoryList />
       </div>
@@ -76,17 +78,18 @@ export default function Home() {
       <div className="py-6 space-y-4">
         <div className="px-5 flex justify-between items-center">
           <h2 className="font-semibold">Restaurantes Recomendados</h2>
-          <Button
-            variant="ghost"
-            className="text-primary p-0 hover:bg-transparent h-fit"
-          >
-            Ver todos
-            <ChevronRightIcon size={16} />
-          </Button>
+          <Link href="/restaurants/recommended">
+            <Button
+              variant="ghost"
+              className="text-primary p-0 hover:bg-transparent h-fit"
+            >
+              Ver todos
+              <ChevronRightIcon size={16} />
+            </Button>
+          </Link>
         </div>
         <RestaurantList />
       </div>
-
     </>
   );
 }

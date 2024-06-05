@@ -1,5 +1,6 @@
 "use client";
 import {
+  useFetchCategories,
   useFetchCategoriesRestaurant,
   useFetchProducts,
   useFetchRestaurants,
@@ -19,7 +20,7 @@ interface RestaurantPageProps {
 
 const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
   const { restaurants, loading, error } = useFetchRestaurants();
-  const { categories } = useFetchCategoriesRestaurant();
+  const { categories } = useFetchCategories();
   const { products } = useFetchProducts();
 
   if (loading) {
@@ -31,8 +32,13 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
   }
 
   const restaurant = restaurants.find((restaurant) => restaurant.ID === id);
-  const categorie = categories.filter((categories) => categories.RestaurantID === id);
   const product = products.filter((product) => product.RestaurantID === id);
+
+  // Filtrando categorias para conter apenas as que têm produtos do restaurante específico
+  const categorie = categories.map(category => ({
+    ...category,
+    Product: category.Product.filter(product => product.RestaurantID === id)
+  })).filter(category => category.Product.length > 0);
 
   if (!restaurant) {
     return notFound();
@@ -69,27 +75,22 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
       <div className="mt-3 flex gap-4 overflow-x-scroll px-5 [&::-webkit-scrollbar]:hidden">
         {categorie.map((categorie) => (
           <div
-            key={categorie.CategoryID}
+            key={categorie.ID}
             className="min-w-[167px] rounded-lg bg-[#F4F4F4] text-center"
           >
             <span className="text-xs text-muted-foreground">
-              {categorie.Category.Name}
+              {categorie.Name}
             </span>
           </div>
         ))}
       </div>
 
-      <div className="mt-6 space-y-4">
-        {/* TODO: mostrar produtos mais pedidos quando implementarmos realização de pedido */}
-        <h2 className="px-5  font-semibold">Mais Pedidos</h2>
-        <ProductList products={product} />
-      </div>
-
-      {product.map((product) => (
-        <div className="mt-6 space-y-4" key={product.CategoryID}>
-          {product?.Category?.Name}
-        </div>
-      ))}
+        {categorie.map((category) => (
+          <div className="mt-6 space-y-4" key={category.ID}>
+            <h2 className="px-5  font-semibold">{category.Name}</h2>
+            <ProductList products={category.Product} />
+          </div>
+        ))}
     </div>
   );
 };

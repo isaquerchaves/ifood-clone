@@ -6,16 +6,7 @@ export interface Category {
   ID: string;
   Name: string;
   ImageUrl: string;
-  Product: {
-    ID: string;
-    Name: string;
-    Description: string;
-    ImageUrl: string;
-    Price: number;
-    DiscountPercentage: number;
-    RestaurantID: string;
-    CategoryID: string;
-  };
+  Product: Product[];
 }
 
 export interface Product {
@@ -26,7 +17,7 @@ export interface Product {
   Price: number;
   DiscountPercentage: number;
   RestaurantID: string;
-  CategoryID: string;
+  CategoryID: string; 
   Restaurant: {
     Name: string;
     ImageUrl: string;

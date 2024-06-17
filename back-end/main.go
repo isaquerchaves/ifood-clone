@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/config"
 	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/controllers"
@@ -30,6 +32,12 @@ func main() {
 	app.GET("restaurants", controllers.GetAllRestaurant)
 	app.GET("categoriesRestaurant", controllers.GetAllCategoryToRestaurant)
 
-	app.Run()
+	// Use a porta definida pela variável de ambiente `PORT`
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Default para execução local
+	}
+
+	app.Run(":" + port)
 
 }

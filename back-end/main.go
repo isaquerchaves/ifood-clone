@@ -30,6 +30,6 @@ func main() {
 	app.GET("restaurants", controllers.GetAllRestaurant)
 	app.GET("categoriesRestaurant", controllers.GetAllCategoryToRestaurant)
 
-	app.Run("localhost:3002")
+	app.Run()
 
 }

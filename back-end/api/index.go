@@ -1,36 +1,10 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
-
-	"github.com/gin-gonic/gin"
-	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/config"
-	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/controllers"
 )
 
-func init() {
-	config.ConnectToDb()
-}
-
 func Handler(w http.ResponseWriter, r *http.Request) {
-	app := gin.Default()
-
-	// Middleware CORS
-	app.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(204)
-			return
-		}
-		c.Next()
-	})
-
-	app.GET("categories", controllers.GetAllCategory)
-	app.GET("products", controllers.GetAllProduct)
-	app.GET("restaurants", controllers.GetAllRestaurant)
-	app.GET("categoriesRestaurant", controllers.GetAllCategoryToRestaurant)
-
-	app.Run()
+	fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
 }

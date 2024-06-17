@@ -10,8 +10,8 @@ const CategoryList = () => {
   return (
     <div className="grid grid-cols-2 gap-3">
       {categories.map((category: any) => (
-        <Link href={`categories/${category.ID}/products`}>
-          <CategoryItem key={category.ID} category={category} />
+        <Link key={category.ID} href={`categories/${category.ID}/products`}>
+          <CategoryItem category={category} />
         </Link>
       ))}
     </div>

@@ -28,7 +28,7 @@ const ProductPage = ({ params: { id } }: ProductPageProps) => {
     return notFound();
   }
 
-  const juices =  products.filter((products) => products.RestaurantID === product.RestaurantID && products.CategoryID === '4e33d8dd-86b0-41b6-9114-de37b6841015')
+  const juices = products.filter((products) => products.RestaurantID === product.RestaurantID && products.CategoryID === '4e33d8dd-86b0-41b6-9114-de37b6841015')
 
   return (
     <div>

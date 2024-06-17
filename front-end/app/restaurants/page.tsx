@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { Restaurant } from "@/services/service";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,9 +11,7 @@ import Link from "next/link";
 
 const Restaurants = () => {
   const { restaurants } = useFetchRestaurants();
-  const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>(
-    []
-  );
+  const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -33,8 +32,8 @@ const Restaurants = () => {
         <h2 className="mb-6 text-lg font-semibold">Restaurantes Encontrados</h2>
         <div className="flex w-full flex-col gap-6">
           {filteredRestaurants.map((restaurant) => (
-            <Link href={`/restaurants/${restaurant.ID}`}>
-              <RestaurantItem key={restaurant.ID} restaurant={restaurant} />
+            <Link key={restaurant.ID} href={`/restaurants/${restaurant.ID}`}>
+              <RestaurantItem restaurant={restaurant} />
             </Link>
           ))}
         </div>
@@ -43,4 +42,10 @@ const Restaurants = () => {
   );
 };
 
-export default Restaurants;
+const RestaurantsPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Restaurants />
+  </Suspense>
+);
+
+export default RestaurantsPage;

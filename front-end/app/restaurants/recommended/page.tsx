@@ -16,9 +16,9 @@ const RecomendedRestaurants = () => {
         </h2>
         <div className="flex w-full flex-col gap-6">
           {restaurants.map((restaurant) => (
-            <div className="w-full">
+            <div key={restaurant.ID} className="w-full">
               <Link href={`/restaurants/${restaurant.ID}`}>
-                <RestaurantItem key={restaurant.ID} restaurant={restaurant} />
+                <RestaurantItem restaurant={restaurant} />
               </Link>
             </div>
           ))}

@@ -1,6 +1,8 @@
-package main
+package handler
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/config"
 	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/controllers"
@@ -10,7 +12,7 @@ func init() {
 	config.ConnectToDb()
 }
 
-func main() {
+func Handler(w http.ResponseWriter, r *http.Request) {
 	app := gin.Default()
 
 	// Middleware CORS

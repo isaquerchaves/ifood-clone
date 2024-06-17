@@ -2,6 +2,7 @@ package config
 
 import (
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -11,7 +12,7 @@ import (
 
 var DB *gorm.DB
 
-func ConnectToDb() {
+func ConnectToDb(w http.ResponseWriter, r *http.Request) {
 	// Carregar variáveis de ambiente do arquivo .env
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("Error loading .env file")

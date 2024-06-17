@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://ifood-clone-u3t1.onrender.com";
+const API_BASE_URL = "https://ifood-clone-production.up.railway.app";
 
 export interface Category {
   ID: string;

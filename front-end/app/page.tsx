@@ -10,12 +10,15 @@ import { ChevronRightIcon } from "lucide-react";
 import { useFetchProducts } from "./_hooks/useFetch";
 import RestaurantList from "./_components/restaurant/restaurant-list";
 import Link from "next/link";
+import Loading from "./_components/loading";
 
 export default function Home() {
   const { products, loading, error } = useFetchProducts();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Loading />
+    );
   }
 
   if (error) {
@@ -32,7 +35,7 @@ export default function Home() {
       <div className="px-5 pt-6">
         <Search />
       </div>
-      
+
       <div className="px-5 pt-6">
         <CategoryList />
       </div>
@@ -53,13 +56,13 @@ export default function Home() {
         <div className="px-5 flex justify-between items-center">
           <h2 className="font-semibold">Pedidos Recomendados</h2>
           <Link href="/products/recommended">
-          <Button
-            variant="ghost"
-            className="text-primary p-0 hover:bg-transparent h-fit"
-          >
-            Ver todos
-            <ChevronRightIcon size={16} />
-          </Button>
+            <Button
+              variant="ghost"
+              className="text-primary p-0 hover:bg-transparent h-fit"
+            >
+              Ver todos
+              <ChevronRightIcon size={16} />
+            </Button>
           </Link>
         </div>
         <ProductList products={productsWithDiscount} />

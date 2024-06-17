@@ -8,10 +8,13 @@ import { filterRestaurants } from "./_actions/search";
 import Header from "../_components/header";
 import RestaurantItem from "../_components/restaurant/restaurant-item";
 import Link from "next/link";
+import Loading from "../_components/loading";
 
 const Restaurants = () => {
   const { restaurants } = useFetchRestaurants();
-  const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>(
+    []
+  );
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -43,7 +46,11 @@ const Restaurants = () => {
 };
 
 const RestaurantsPage = () => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense
+    fallback={
+      <Loading />
+    }
+  >
     <Restaurants />
   </Suspense>
 );

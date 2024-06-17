@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/app/_components/header";
+import Loading from "@/app/_components/loading";
 import ProductItem from "@/app/_components/product/product-item";
 import { useFetchCategories } from "@/app/_hooks/useFetch";
 import { Category, Product } from "@/services/service";
@@ -26,7 +27,9 @@ const CategoriesPage = ({ params: { id } }: CategoriesPageProps) => {
   console.log(filteredCategories);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Loading />
+    );
   }
 
   if (error) {

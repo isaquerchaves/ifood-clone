@@ -11,6 +11,7 @@ import Image from "next/image";
 import { StarIcon } from "lucide-react";
 import DeliveryInfo from "@/app/_components/delivery-info";
 import ProductList from "@/app/_components/product/product-list";
+import Loading from "@/app/_components/loading";
 
 interface RestaurantPageProps {
   params: {
@@ -24,7 +25,9 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
   const { products } = useFetchProducts();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Loading />
+    );
   }
 
   if (error) {

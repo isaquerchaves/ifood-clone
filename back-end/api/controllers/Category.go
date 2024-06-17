@@ -1,14 +1,12 @@
 package controllers
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/config"
 	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/models"
 )
 
-func GetAllCategory(c *gin.Context, w http.ResponseWriter, r *http.Request) {
+func GetAllCategory(c *gin.Context) {
 	var categories []models.Category
 
 	config.DB.Preload("Product").Find(&categories)

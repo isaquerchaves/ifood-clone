@@ -2,7 +2,7 @@
 
 import { Product } from "@/services/service";
 import Image from "next/image";
-import { calculateProductTotalPrice, formatCurrency } from "../_helpers/price";
+import { calculateProductTotalPrice, formatCurrency } from "../../_helpers/price";
 import { ArrowDownIcon } from "lucide-react";
 import Link from "next/link";
 

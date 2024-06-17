@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useFetchRestaurants } from "../_hooks/useFetch";
 import { filterRestaurants } from "./_actions/search";
 import Header from "../_components/header";
-import RestaurantItem from "../_components/restaurant-item";
+import RestaurantItem from "../_components/restaurant/restaurant-item";
 import Link from "next/link";
 
 const Restaurants = () => {

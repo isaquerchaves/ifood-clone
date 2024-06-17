@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useFetchRestaurants } from "../_hooks/useFetch";
+import { useFetchRestaurants } from "../../_hooks/useFetch";
 import RestaurantItem from "./restaurant-item";
 
 const RestaurantList = () => {

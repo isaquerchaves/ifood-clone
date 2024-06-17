@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/app/_components/header";
-import ProductItem from "@/app/_components/product-item";
+import ProductItem from "@/app/_components/product/product-item";
 import { useFetchCategories } from "@/app/_hooks/useFetch";
 import { Category, Product } from "@/services/service";
 import { notFound } from "next/navigation";

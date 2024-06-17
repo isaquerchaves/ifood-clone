@@ -1,7 +1,7 @@
 "use client";
 import DeliveryInfo from "@/app/_components/delivery-info";
 import DiscountBadge from "@/app/_components/discount-badge";
-import ProductList from "@/app/_components/product-list";
+import ProductList from "@/app/_components/product/product-list";
 import { Button } from "@/app/_components/ui/button";
 import { Card } from "@/app/_components/ui/card";
 import {

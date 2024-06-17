@@ -3,12 +3,12 @@
 import Image from "next/image";
 import Header from "./_components/header";
 import Search from "./_components/search";
-import CategoryList from "./_components/category-list";
-import ProductList from "./_components/product-list";
+import CategoryList from "./_components/category/category-list";
+import ProductList from "./_components/product/product-list";
 import { Button } from "./_components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
 import { useFetchProducts } from "./_hooks/useFetch";
-import RestaurantList from "./_components/restaurant-list";
+import RestaurantList from "./_components/restaurant/restaurant-list";
 import Link from "next/link";
 
 export default function Home() {

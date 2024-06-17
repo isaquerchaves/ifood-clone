@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/app/_components/header";
-import RestaurantItem from "@/app/_components/restaurant-item";
+import RestaurantItem from "@/app/_components/restaurant/restaurant-item";
 import { useFetchRestaurants } from "@/app/_hooks/useFetch";
 import Link from "next/link";
 

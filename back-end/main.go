@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/isaquerchaves/ifood-clone/back-end/config"
-	"github.com/isaquerchaves/ifood-clone/back-end/controllers"
+	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/config"
+	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/controllers"
 )
 
 func init() {
@@ -25,10 +25,11 @@ func main() {
 		c.Next()
 	})
 
-	app.GET("/categories", controllers.GetAllCategory)
-	app.GET("/products", controllers.GetAllProduct)
-	app.GET("/restaurants", controllers.GetAllRestaurant)
-	app.GET("/categoriesRestaurant", controllers.GetAllCategoryToRestaurant)
+	app.GET("categories", controllers.GetAllCategory)
+	app.GET("products", controllers.GetAllProduct)
+	app.GET("restaurants", controllers.GetAllRestaurant)
+	app.GET("categoriesRestaurant", controllers.GetAllCategoryToRestaurant)
 
 	app.Run()
+
 }

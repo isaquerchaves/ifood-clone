@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/config"
-	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/controllers"
+	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/config"
+	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/controllers"
 )
 
 func init() {

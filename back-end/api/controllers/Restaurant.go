@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/config"
-	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/models"
+	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/config"
+	"github.com/isaquerchaves/ifood-clone/tree/main/back-end/api/models"
 )
 
 func GetAllRestaurant(c *gin.Context) {

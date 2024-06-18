@@ -31,7 +31,6 @@ const ProductDetails = ({
   const [isCartOpen, setIsCartOpen] = useState(false)
   const {addProductToCart, products} = useContext(CartContext);
 
-  console.log(products)
 
   const handleAddToCartClick = () => {
     addProductToCart(product, quantity),

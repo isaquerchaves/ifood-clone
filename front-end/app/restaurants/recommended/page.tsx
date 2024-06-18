@@ -1,11 +1,18 @@
 "use client";
 import Header from "@/app/_components/header";
+import Loading from "@/app/_components/loading";
 import RestaurantItem from "@/app/_components/restaurant/restaurant-item";
 import { useFetchRestaurants } from "@/app/_hooks/useFetch";
 import Link from "next/link";
 
 const RecomendedRestaurants = () => {
-  const { restaurants } = useFetchRestaurants();
+  const { restaurants, loading } = useFetchRestaurants();
+
+  if (loading) {
+    return (
+      <Loading />
+    );
+  }
 
   return (
     <>

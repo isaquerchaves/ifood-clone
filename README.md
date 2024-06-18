@@ -1,10 +1,10 @@
 # iFood Clone
 
-Este projeto é um clone do iFood, desenvolvido utilizando Next.js, React e Tailwind CSS no Front End, e Golang, Gin e Gorm no Back End. A aplicação é dividida em dois repositórios: um para o Front End e outro para o Back End. 
+Este projeto é um clone do iFood, desenvolvido utilizando Next.js, React e Tailwind CSS no Front End, e Golang, Gin e Gorm no Back End. **A aplicação é projetada especificamente para ser acessada em dispositivos móveis e pode não oferecer a melhor experiência em desktops.**
 
 ## Descrição
 
-Este projeto é um clone do iFood, desenvolvido para fins de estudo e prática de tecnologias web modernas. A aplicação permite visualizar uma lista de produtos, restaurantes e categorias, simulando algumas funcionalidades básicas de um aplicativo de delivery de comida.
+Este projeto é um clone do iFood, desenvolvido para fins de estudo e prática de tecnologias web modernas. A aplicação permite visualizar uma lista de produtos, restaurantes e categorias, simulando algumas funcionalidades básicas de um aplicativo de delivery de comida. **O foco está na experiência de usuário em dispositivos móveis.**
 
 ## Tecnologias Utilizadas
 

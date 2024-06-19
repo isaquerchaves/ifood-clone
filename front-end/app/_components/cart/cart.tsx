@@ -11,54 +11,60 @@ const Cart = () => {
     useContext(CartContext);
 
   return (
-    <div className="py-5">
-      <div className="space-y-4">
-        {products.map((product) => (
-          <CartItem key={product.ID} cartProduct={product} />
-        ))}
-      </div>
-
+    <div className="py-5 h-full flex flex-col">
       {/*TOTAIS*/}
-      <div className="mt-6">
-        <Card>
-          <CardContent className="p-5 space-y-2">
-            <div className="justify-between items-center flex text-xs">
-              <span className="text-muted-foreground">Subtotal</span>
-              <span>{formatCurrency(subTotalPrice)}</span>
-            </div>
+      {products.length > 0 ? (
+        <>
+          <div className="flex-auto space-y-4">
+            {products.map((product) => (
+              <CartItem key={product.ID} cartProduct={product} />
+            ))}
+          </div>
+          <div className="mt-6">
+            <Card>
+              <CardContent className="p-5 space-y-2">
+                <div className="justify-between items-center flex text-xs">
+                  <span className="text-muted-foreground">Subtotal</span>
+                  <span>{formatCurrency(subTotalPrice)}</span>
+                </div>
 
-            <Separator />
+                <Separator />
 
-            <div className="justify-between items-center flex text-xs">
-              <span className="text-muted-foreground">Descontos</span>
-              <span>- {formatCurrency(totalDiscounts)}</span>
-            </div>
+                <div className="justify-between items-center flex text-xs">
+                  <span className="text-muted-foreground">Descontos</span>
+                  <span>- {formatCurrency(totalDiscounts)}</span>
+                </div>
 
-            <Separator />
+                <Separator />
 
-            <div className="justify-between items-center flex text-xs">
-              <span className="text-muted-foreground">Entrega</span>
-              <span>
-                {Number(products[0].Restaurant.DeliveryFee) === 0 ? (
-                  <span className="uppercase text-primary">Grátis</span>
-                ) : (
-                  formatCurrency(Number(products[0].Restaurant.DeliveryFee))
-                )}
-              </span>
-            </div>
+                <div className="justify-between items-center flex text-xs">
+                  <span className="text-muted-foreground">Entrega</span>
+                  <span>
+                    {Number(products?.[0].Restaurant.DeliveryFee) === 0 ? (
+                      <span className="uppercase text-primary">Grátis</span>
+                    ) : (
+                      formatCurrency(
+                        Number(products?.[0].Restaurant.DeliveryFee)
+                      )
+                    )}
+                  </span>
+                </div>
 
-            <Separator />
+                <Separator />
 
-            <div className="justify-between items-center flex text-xs font-semibold">
-              <span>Total</span>
-              <span>{formatCurrency(totalPrice)}</span>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/*FINALIZAR PEDIDO*/}
-      <Button className="w-full mt-6">Finalizar Pedido</Button>
+                <div className="justify-between items-center flex text-xs font-semibold">
+                  <span>Total</span>
+                  <span>{formatCurrency(totalPrice)}</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          {/*FINALIZAR PEDIDO*/}
+          <Button className="w-full mt-6">Finalizar Pedido</Button>
+        </>
+      ) : (
+        <h2 className="font-medium text-center">Sua sacola está vazia!</h2>
+      )}
     </div>
   );
 };

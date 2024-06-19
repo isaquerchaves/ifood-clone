@@ -12,7 +12,13 @@ interface ICartContext {
   subTotalPrice: number;
   totalPrice: number;
   totalDiscounts: number;
-  addProductToCart: (product: Product, quantity: number) => void;
+  addProductToCart: ({
+    product,
+    emptyCart,
+  }: {
+    product: CartProduct;
+    emptyCart?: boolean;
+  }) => void;
   decreseProductQuantity: (productId: string) => void;
   increseProductQuantity: (productId: string) => void;
   removeProductFromCart: (productId: string) => void;
@@ -41,7 +47,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const totalPrice = useMemo(() => {
     return products.reduce((acc, product) => {
       return acc + calculateProductTotalPrice(product) * product.quantity
-    }, 0)
+    }, 0) + Number(products?.[0]?.Restaurant?.DeliveryFee);
   }, [products])
 
   const totalDiscounts = subTotalPrice - totalPrice;
@@ -85,7 +91,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const addProductToCart = (product: Product, quantity: number) => {
+  const addProductToCart: ICartContext["addProductToCart"] = ({
+    product,
+    emptyCart,
+  }) => {
+    if (emptyCart) {
+      setProducts([]);
+    }
+    
     // VERIFICAR SE O PRODUTO JÁ ESTÁ NO CARRINHO
     const isProductAlreadyOnCart = products.some(
       (cartProduct) => cartProduct.ID === product.ID
@@ -98,7 +111,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           if (cartProduct.ID === product.ID) {
             return {
               ...cartProduct,
-              quantity: cartProduct.quantity + quantity,
+              quantity: cartProduct.quantity + product.quantity,
             };
           }
 
@@ -108,7 +121,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
 
     // SE NÃO, ADICIONAR COM A QUANTIDADE QUANTIDADE RECEBIDA
-    setProducts((prev) => [...prev, { ...product, quantity: quantity }]);
+    setProducts((prev) => [...prev, { ...product, quantity: product.quantity }]);
   };
 
   return (

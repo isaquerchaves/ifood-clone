@@ -12,6 +12,7 @@ import { StarIcon } from "lucide-react";
 import DeliveryInfo from "@/app/_components/delivery-info";
 import ProductList from "@/app/_components/product/product-list";
 import Loading from "@/app/_components/loading";
+import CartBanner from "./_components/cart-banner";
 
 interface RestaurantPageProps {
   params: {
@@ -25,9 +26,7 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
   const { products } = useFetchProducts();
 
   if (loading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   if (error) {
@@ -38,10 +37,14 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
   const product = products.filter((product) => product.RestaurantID === id);
 
   // Filtrando categorias para conter apenas as que têm produtos do restaurante específico
-  const categorie = categories.map(category => ({
-    ...category,
-    Product: category.Product.filter(product => product.RestaurantID === id)
-  })).filter(category => category.Product.length > 0);
+  const categorie = categories
+    .map((category) => ({
+      ...category,
+      Product: category.Product.filter(
+        (product) => product.RestaurantID === id
+      ),
+    }))
+    .filter((category) => category.Product.length > 0);
 
   if (!restaurant) {
     return notFound();
@@ -88,12 +91,14 @@ const RestaurantPage = ({ params: { id } }: RestaurantPageProps) => {
         ))}
       </div>
 
-        {categorie.map((category) => (
-          <div className="mt-6 space-y-4" key={category.ID}>
-            <h2 className="px-5  font-semibold">{category.Name}</h2>
-            <ProductList products={category.Product} />
-          </div>
-        ))}
+      {categorie.map((category) => (
+        <div className="mt-6 space-y-4" key={category.ID}>
+          <h2 className="px-5  font-semibold">{category.Name}</h2>
+          <ProductList products={category.Product} />
+        </div>
+      ))}
+
+      <CartBanner restaurant={restaurant} />
     </div>
   );
 };

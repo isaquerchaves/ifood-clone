@@ -12,12 +12,19 @@ import (
 var DB *gorm.DB
 
 func ConnectToDb() {
-	// Carregar variáveis de ambiente do arquivo .env
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+	// Carregar variáveis de ambiente do arquivo .env apenas se não estiver em produção
+	if os.Getenv("RAILWAY_ENVIRONMENT") == "" {
+		if err := godotenv.Load(); err != nil {
+			log.Println("No .env file found, relying on environment variables")
+		}
 	}
 
-	dsn := "host=" + os.Getenv("DB_HOST") + " user=" + os.Getenv("DB_USER") + " password=" + os.Getenv("DB_PASSWORD") + " dbname=" + os.Getenv("DB_NAME") + " port=" + os.Getenv("DB_PORT") + " sslmode=" + os.Getenv("DB_SSLMODE")
+	dsn := "host=" + os.Getenv("DB_HOST") +
+		" user=" + os.Getenv("DB_USER") +
+		" password=" + os.Getenv("DB_PASSWORD") +
+		" dbname=" + os.Getenv("DB_NAME") +
+		" port=" + os.Getenv("DB_PORT") +
+		" sslmode=" + os.Getenv("DB_SSLMODE")
 
 	// Conectar ao banco de dados
 	var err error

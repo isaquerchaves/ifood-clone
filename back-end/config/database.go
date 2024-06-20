@@ -1,17 +1,19 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"os"
-	"strconv"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-var DB *gorm.DB
+var (
+	DB      *gorm.DB
+	port    = "5432"    // Defina a porta padrão aqui
+	sslmode = "require" // Defina o modo SSL padrão aqui
+)
 
 func ConnectToDb() {
 	// Carregar variáveis de ambiente do arquivo .env apenas se não estiver em produção
@@ -21,24 +23,17 @@ func ConnectToDb() {
 		}
 	}
 
-	host := os.Getenv("DB_HOST")
-	user := os.Getenv("DB_USER")
-	password := os.Getenv("DB_PASSWORD")
-	dbname := os.Getenv("DB_NAME")
-	portStr := os.Getenv("DB_PORT")
-	sslmode := os.Getenv("DB_SSLMODE")
-
-	port, parseErr := strconv.ParseUint(portStr, 10, 32)
-	if parseErr != nil {
-		log.Fatalf("Failed to parse port: %v", parseErr)
-	}
-
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=%s", host, user, password, dbname, port, sslmode)
+	dsn := "host=" + os.Getenv("DB_HOST") +
+		" user=" + os.Getenv("DB_USER") +
+		" password=" + os.Getenv("DB_PASSWORD") +
+		" dbname=" + os.Getenv("DB_NAME") +
+		" port=" + port +
+		" sslmode=" + sslmode
 
 	// Conectar ao banco de dados
-	var connectErr error
-	DB, connectErr = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if connectErr != nil {
-		log.Fatalf("Failed to connect to the database: %v", connectErr)
+	var err error
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatal("Failed to connect to the database")
 	}
 }
